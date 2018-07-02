@@ -3,6 +3,7 @@ import kinesiologia.*
 describe "group of tests" {
 
 //**************************objetos para puntos 1 y 2*********************************/
+//TODO: El valor por default corresponde que esté en la inicialización dentro de la clase (donde se define la variable)
 	var magneto = new Magneto (color=blanco)
 	var bicicleta =new Bicicleta(color=blanco)
 	var minitramp = new Minitramp(color=blanco)
@@ -66,6 +67,7 @@ describe "group of tests" {
 //
 	test "usar bicicleta milena" {
 		assert.notThat(bicicleta.puedeUsarlo(milena))	
+		//TODO: Esto debería lanzar un error
 		milena.usarAparato(magneto)
 	}
 //	
@@ -73,10 +75,12 @@ describe "group of tests" {
 		assert.that(minitramp.puedeUsarlo(leo))	
 		leo.usarAparato(minitramp)
 		assert.equals(24, leo.fortaleza())		
-//	} 	
+//TODO: Desconmento esta llave porque no compilaba el test
+	} 	
 //
 	test "usar minitramp milena" {
 		assert.notThat(bicicleta.puedeUsarlo(milena))	
+			//TODO: Esto debería lanzar un error
 		milena.usarAparato(minitramp)
 		
 	}
@@ -91,6 +95,8 @@ describe "group of tests" {
 	test "sesion milena" {
 		assert.notThat(milena.puedeRealizarRutina())	
 		/* milena hace la sesion (cosa que no puede hacer) */
+		//TODO: Se debería probar que se lanza un error cuando se le pide a milena que realice la rutina
+		
 	}	
 //
 //***********************Punto 3*************************************//

@@ -1,3 +1,12 @@
+//Nota 4 (cuatro)
+//test: todos andan, aunque no todos están bien armados
+//1: Regular: usa pobremente el polimorfismo y no relaiza las validaciones. La validación era un punto importante
+// porque además de evaluar el tema "errores" es un lugar donde el alumno tenía que demostrar como resolver un problema entre varias clases sin
+// repetir código
+//2: MB
+//3: Mal: Repite código en lugar de usar super
+//4: B (con algún codigo repetido)
+
 
 class CentroKinesio{
 	var property aparatos
@@ -7,6 +16,7 @@ class CentroKinesio{
 		return aparatos.map({e=>e.color()}).asSet()
 	}
 	method pacientesChicos(){
+		//TODO: se repite la condicion de que significa ser chico (usado en la minitramp)
 		return pacientes.filter({e=>e.edad()<8})
 	}
 	method noPuedenCumplirRutina(){
@@ -22,6 +32,11 @@ class Paciente{
 	var property rutina 
 	
 	method usarAparato(unAparato){
+		//TODO: pobre uso de polimorfismo: por cada criterio nuevo que quiera modificar un aparato hay
+		//que agregar un método nuevo en todos los demás. La mejor solución es 
+		// que el aparato reciba una orden y sea éste el que eliga si mandar los mensajes con efecto.
+		
+		//TODO: Por otro lado, no se está validando que el paciente pueda usar el aparato
 		dolor-=unAparato.efectoAnalgesico(self)
 		fortaleza+=unAparato.efectoMuscular(self)
 	}
@@ -44,6 +59,8 @@ class Paciente{
 class Resistente inherits Paciente{
 	
 	override method realizarRutina(){
+		//TODO: repite código en lugar de usar super()
+		//TODO: pierde la validación
 		rutina.forEach({e=>self.usarAparato(e)})
 		fortaleza+= rutina.size()
 	} 
@@ -60,6 +77,7 @@ class Caprichoso inherits Paciente{
 			   self.hayAparatoRojo()		
 	}
 	override method realizarRutina(){
+		//TODO: repite código en lugar de usar super()
 		if(self.puedeRealizarRutina()){
 		rutina.forEach({e=>self.usarAparato(e)})
 		rutina.forEach({e=>self.usarAparato(e)})
@@ -132,7 +150,8 @@ class Minitramp inherits Aparato{
 }
 
 
-
+//TODO: innecesario un método que devuelve self siempre, porque ya lo tenés!
+//Además, de ser necesario, estás repitiendo código (Debería heredar de una clase)
 object blanco{
 	method color(){return self}
 }
@@ -156,7 +175,7 @@ object nivelDolor{
 	method cambiarValor(unValor){
 		valor=unValor
 	} 
-	
+	//TODO: mejorar el nombre, tiene nombre de orden
 	method decrementa(){return valor}
 }
 
